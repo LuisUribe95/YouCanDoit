@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You can do it</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+        .section {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        .section h1 {
+            font-size: 5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+        }
+        .section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section:nth-child(1) { background-color: #000000; color: white; }
+        .section:nth-child(2) { background-color: #2196f3; color: white; }
+        .section:nth-child(3) { background-color: #4caf50; color: white; }
+        .section:nth-child(4) { background-color: #ff9800; color: white; }
+        .section:nth-child(5) { background-color: #9c27b0; color: white; }
+        .section:nth-child(6) { background-color: #000000; color: white; }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ccc;
+        }
+        @media screen and (max-width:480px) {
+            .section{
+                width: 65%;
+                height: 65%;
+            }
+            .section h1{
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="section active">
+        <h1>Hola, mi amor</h1>
+        <button onclick="startExperience()">Play</button>
+       
+        </div>
+        <div class="section">
+            <h1>Sé que las cosas no han sido fáciles, pero...</h1>
+        </div>
+        <div class="section">
+            <h1>Sé que lograrás levantarte y volver a disfrutar la vida.</h1>
+        </div>
+        <div class="section">
+            <h1>Eres una persona más que capaz de lograr todo lo que se proponga.</h1>
+        </div>
+        <div class="section">
+            <h1>¡Nunca estarás sola!</h1>
+            <h1>Te quiero ❤️</h1>
+        </div>
+        <div class="section">
+            <h1>Gracias por ver... Una producción de Luis Uribe y asociados</h1>
+        </div>
+        
+    
+    </div>
+    <script>
+        let currentSection = 0;
+        let interval;
+
+        function startExperience() {
+            
+            nextSection(); // Cambiar a la siguiente sección inmediatamente
+            interval = setInterval(nextSection, 5000); // Cambiar automáticamente cada 5 segundos
+        }
+
+        function nextSection() {
+            const sections = document.querySelectorAll('.section');
+            sections[currentSection].classList.remove('active');
+            currentSection++;
+
+            if (currentSection < sections.length) {
+                sections[currentSection].classList.add('active');
+            } else {
+                clearInterval(interval); // Detener el ciclo cuando se llega al final
+            }
+        }
+    </script>
+</body>
+</html>
